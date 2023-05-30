@@ -44,4 +44,10 @@ public class PostService {
         result.add("post_list", postList);
         return result;
     }
+
+    public PostDto getPostContents(int articleNo) {
+        return repository.findById(articleNo)
+                .map(converter::postToDto)
+                .orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
+    }
 }

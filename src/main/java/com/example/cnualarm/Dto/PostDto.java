@@ -1,6 +1,8 @@
 package com.example.cnualarm.Dto;
 
 import com.example.cnualarm.Utils.Tag;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 
 import java.sql.Date;
@@ -11,6 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PostDto {
     private int articleNo;
 //    private int categoryNo;
