@@ -1,6 +1,5 @@
 package com.example.cnualarm.Entity;
 
-import com.example.cnualarm.Utils.Tag;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

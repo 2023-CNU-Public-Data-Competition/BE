@@ -1,6 +1,6 @@
 package com.example.cnualarm.security;
 
-import com.example.cnualarm.Auth.UserRepository;
+import com.example.cnualarm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

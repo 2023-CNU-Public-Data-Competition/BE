@@ -1,4 +1,4 @@
-package com.example.cnualarm.Utils;
+package com.example.cnualarm.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.example.cnualarm.Dto;
 
-import com.example.cnualarm.Utils.Tag;
+import com.example.cnualarm.Entity.Tag;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;

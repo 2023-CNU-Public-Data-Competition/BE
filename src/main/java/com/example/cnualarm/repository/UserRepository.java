@@ -1,4 +1,4 @@
-package com.example.cnualarm.Auth;
+package com.example.cnualarm.repository;
 
 import com.example.cnualarm.Entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

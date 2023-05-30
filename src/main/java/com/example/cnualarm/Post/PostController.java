@@ -1,7 +1,7 @@
 package com.example.cnualarm.Post;
 
 import com.example.cnualarm.Dto.PostDto;
-import com.example.cnualarm.Utils.Tag;
+import com.example.cnualarm.Entity.Tag;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

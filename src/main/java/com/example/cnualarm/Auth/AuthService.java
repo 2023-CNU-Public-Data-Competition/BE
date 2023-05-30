@@ -2,6 +2,7 @@ package com.example.cnualarm.Auth;
 
 import com.example.cnualarm.Entity.UserEntity;
 import com.example.cnualarm.Entity.Role;
+import com.example.cnualarm.repository.UserRepository;
 import com.example.cnualarm.security.UserService;
 import com.example.cnualarm.security.jwt.Jwt;
 import org.springframework.beans.factory.annotation.Autowired;

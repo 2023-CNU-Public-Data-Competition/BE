@@ -2,7 +2,8 @@ package com.example.cnualarm.Post;
 
 import com.example.cnualarm.Dto.PostDto;
 import com.example.cnualarm.Utils.EntityConverter;
-import com.example.cnualarm.Utils.Tag;
+import com.example.cnualarm.Entity.Tag;
+import com.example.cnualarm.repository.PostRepository;
 import com.google.gson.JsonArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

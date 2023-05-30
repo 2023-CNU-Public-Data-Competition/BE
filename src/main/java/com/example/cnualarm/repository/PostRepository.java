@@ -1,7 +1,7 @@
-package com.example.cnualarm.Post;
+package com.example.cnualarm.repository;
 
 import com.example.cnualarm.Entity.PostEntity;
-import com.example.cnualarm.Utils.Tag;
+import com.example.cnualarm.Entity.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
