@@ -2,9 +2,11 @@ package com.example.cnualarm.Auth;
 
 import com.example.cnualarm.Entity.UserEntity;
 import com.example.cnualarm.Entity.Role;
+import com.example.cnualarm.category.CategoryService;
 import com.example.cnualarm.repository.UserRepository;
 import com.example.cnualarm.security.UserService;
 import com.example.cnualarm.security.jwt.Jwt;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,22 +25,25 @@ public class AuthService {
     @Autowired
     UserService userService;
     @Autowired
+    CategoryService categoryService;
+    @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
     PasswordEncoder encoder;
     @Autowired
     Jwt jwt;
 
-    public String signup(String id, String pw) {
-        if (repository.existsById(id)) {
+    public String signup(SignUpInput input) throws Exception {
+        if (repository.existsById(input.id)) {
             return "Id already exists.";
         }
-        UserEntity user = new UserEntity(id, encoder.encode(pw), Role.USER);
+        UserEntity user = new UserEntity(input.id, encoder.encode(input.password), Role.USER);
         repository.save(user);
+        categoryService.setLikedCategory(input.id, input.categoryList);
         return "success";
     }
 
-    public String login(String id, String pw) {
+    public JsonObject login(String id, String pw) {
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(id, pw));
 
@@ -50,7 +55,10 @@ public class AuthService {
                 .map(GrantedAuthority::getAuthority)
                 .toList().toArray(String[]::new);
 
-        return jwt.sign(Jwt.Claims.from(userDetails.getUsername(),roles));
+        JsonObject result = new JsonObject();
+        result.addProperty("token", jwt.sign(Jwt.Claims.from(userDetails.getUsername(),roles)));
+        result.add("likedCategoryList", categoryService.getLikedCategoryByUserId(id));
+        return result;
     }
 
     public String verify(String token){

@@ -34,11 +34,19 @@ public class EntityConverter {
                 .build();
     }
 
-    public CategoryDto categoryToDto(CategoryEntity entity){
+    public static CategoryDto categoryToDto(CategoryEntity entity){
         return CategoryDto.builder()
                 .categoryNo(entity.getCategoryNo())
                 .categoryType(entity.getCategoryType())
                 .categoryName(entity.getCategoryName())
                 .build();
+    }
+
+    public static CategoryEntity categoryFromDto(CategoryDto dto) {
+        CategoryEntity entity = new CategoryEntity();
+        entity.setCategoryNo(dto.getCategoryNo());
+        entity.setCategoryType(dto.getCategoryType());
+        entity.setCategoryName(dto.getCategoryName());
+        return entity;
     }
 }

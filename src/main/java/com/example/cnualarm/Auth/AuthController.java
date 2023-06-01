@@ -1,5 +1,6 @@
 package com.example.cnualarm.Auth;
 
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +11,12 @@ public class AuthController {
     AuthService service;
 
     @PostMapping("/auth/signup")
-    public String signup(@RequestParam("id") String id, @RequestParam("pw") String pw){
-        return service.signup(id, pw);
+    public String signup(@RequestBody SignUpInput input) throws Exception {
+        return service.signup(input);
     }
 
     @GetMapping("/auth/login")
-    public String login(@RequestParam("id") String id, @RequestParam("pw") String pw){
+    public JsonObject login(@RequestParam("id") String id, @RequestParam("password") String pw){
         return service.login(id, pw);
     }
 

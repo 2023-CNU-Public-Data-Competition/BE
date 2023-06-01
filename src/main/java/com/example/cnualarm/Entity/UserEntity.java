@@ -1,20 +1,18 @@
 package com.example.cnualarm.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class UserEntity {
     @Id
     @Column(name = "user_id", columnDefinition = "VARCHAR(30)")
@@ -25,4 +23,16 @@ public class UserEntity {
 
     private Role role;
 
+    @OneToMany(mappedBy = "user")
+    private List<LikedCategoryEntity> likedCategoryEntities = new ArrayList<>();
+
+    public UserEntity(String id, String pw, Role role) {
+        this.userId = id;
+        this.password = pw;
+        this.role = role;
+    }
+
+    public UserEntity(String userId) {
+        this.userId = userId;
+    }
 }
