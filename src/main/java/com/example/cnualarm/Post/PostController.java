@@ -15,12 +15,12 @@ public class PostController {
     PostService service;
 
     @GetMapping("posts")
-    public JsonObject getPostList(@RequestParam("user_id") String userId, @RequestParam("category_num") int categoryNum, @RequestParam("tag") Tag tag){
+    public JsonObject getPostList(@RequestParam("categoryNo") int categoryNum, @RequestParam("tag") Tag tag){
         return service.getPostList(categoryNum, tag);
     }
 
     @GetMapping("contents")
-    public PostDto getPostContents(@RequestParam("article_no") int articleNo){
+    public PostDto getPostContents(@RequestParam("articleNo") int articleNo){
         return service.getPostContents(articleNo);
     }
 }

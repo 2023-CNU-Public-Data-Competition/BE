@@ -6,5 +6,12 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Tag {
-    ALL, NOTICE, EMPLOYMENT, COMPETITION, SCHOLARSHIP
+    ALL,
+    CONTEST,
+    INTERN_JOB,
+    SCHOLARSHIP,
+    SCHEDULE,
+    GRADUATION,
+    LECTURE,
+    NOTICE
 }

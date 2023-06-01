@@ -34,15 +34,15 @@ public class PostService {
         JsonArray postList = new JsonArray();
         for (PostDto postDto: postDtos) {
             JsonObject postInfo = new JsonObject();
-            postInfo.addProperty("article_no", postDto.getArticleNo());
-            postInfo.addProperty("category_no", postDto.getCategoryDto().getCategoryNo());
-            postInfo.addProperty("category_name", postDto.getCategoryDto().getCategoryName());
-            postInfo.addProperty("article_title", postDto.getArticleTitle());
-            postInfo.addProperty("update_dt", postDto.getUpdateDate().toString());
+            postInfo.addProperty("articleNo", postDto.getArticleNo());
+            postInfo.addProperty("categoryNo", postDto.getCategoryDto().getCategoryNo());
+            postInfo.addProperty("categoryName", postDto.getCategoryDto().getCategoryName());
+            postInfo.addProperty("articleTitle", postDto.getArticleTitle());
+            postInfo.addProperty("updateDt", postDto.getUpdateDate().toString());
             postInfo.addProperty("tag", postDto.getTag().toString());
             postList.add(postInfo);
         }
-        result.add("post_list", postList);
+        result.add("postList", postList);
         return result;
     }
 
