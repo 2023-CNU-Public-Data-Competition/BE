@@ -33,19 +33,32 @@ public class AuthService {
     @Autowired
     Jwt jwt;
 
-    public String signup(SignUpInput input) throws Exception {
-        if (repository.existsById(input.id)) {
-            return "Id already exists.";
+    public JsonObject signup(UserInput input) throws Exception {
+        if (!repository.existsById(input.id)) {
+            UserEntity user = new UserEntity(input.id, encoder.encode(input.password), Role.USER);
+            repository.save(user);
+
+            Authentication authentication = authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(input.id, input.password));
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            String[] roles = userDetails.getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .toList().toArray(String[]::new);
+
+            JsonObject result = new JsonObject();
+            result.addProperty("token", jwt.sign(Jwt.Claims.from(userDetails.getUsername(),roles)));
+            return result;
         }
-        UserEntity user = new UserEntity(input.id, encoder.encode(input.password), Role.USER);
-        repository.save(user);
-        categoryService.setLikedCategory(input.id, input.categoryList);
-        return "success";
+        else throw new Exception("id already exists.");
     }
 
-    public JsonObject login(String id, String pw) {
+    public JsonObject login(UserInput input) {
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(id, pw));
+                .authenticate(new UsernamePasswordAuthenticationToken(input.id, input.password));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -57,7 +70,7 @@ public class AuthService {
 
         JsonObject result = new JsonObject();
         result.addProperty("token", jwt.sign(Jwt.Claims.from(userDetails.getUsername(),roles)));
-        result.add("likedCategoryList", categoryService.getLikedCategoryByUserId(id));
+        result.add("likedCategoryList", categoryService.getLikedCategoryByUserId(input.id));
         return result;
     }
 

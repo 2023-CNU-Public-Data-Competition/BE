@@ -11,13 +11,13 @@ public class AuthController {
     AuthService service;
 
     @PostMapping("/auth/signup")
-    public String signup(@RequestBody SignUpInput input) throws Exception {
+    public JsonObject signup(@RequestBody UserInput input) throws Exception {
         return service.signup(input);
     }
 
     @GetMapping("/auth/login")
-    public JsonObject login(@RequestParam("id") String id, @RequestParam("password") String pw){
-        return service.login(id, pw);
+    public JsonObject login(@RequestBody UserInput input){
+        return service.login(input);
     }
 
     //test
