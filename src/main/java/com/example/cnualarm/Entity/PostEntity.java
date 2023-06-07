@@ -27,16 +27,13 @@ public class PostEntity {
     @JoinColumn(name = "category_no", referencedColumnName = "category_no")
     private CategoryEntity categoryEntity;
 
-    @Column(name = "board_no", columnDefinition = "INT")
-    private int boardNo;
-
     @Column(name = "article_title", columnDefinition = "TEXT")
     private String articleTitle;
 
     @Column(name = "article_text", columnDefinition = "TEXT")
     private String articleText;
 
-    @Column(name = "writer_nm", columnDefinition = "TEXT")
+    @Column(name = "writer_nm", columnDefinition = "varchar(30)")
     private String writerName;
 
     @Column(name = "click_cnt", columnDefinition = "INT")

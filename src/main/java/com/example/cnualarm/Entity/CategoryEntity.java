@@ -21,6 +21,6 @@ public class CategoryEntity {
     private int categoryNo;
     @Column(name = "category_type", columnDefinition = "VARCHAR(30)")
     private String categoryType;
-    @Column(name = "category_name", columnDefinition = "VARCHAR(30)")
+    @Column(name = "category_name", columnDefinition = "VARCHAR(100)")
     private String categoryName;
 }

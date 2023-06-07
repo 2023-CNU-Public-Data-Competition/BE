@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import com.google.gson.JsonObject;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -56,8 +58,8 @@ public class PostService {
             postInfo.addProperty("categoryNo", postDto.getCategoryDto().getCategoryNo());
             postInfo.addProperty("categoryName", postDto.getCategoryDto().getCategoryName());
             postInfo.addProperty("articleTitle", postDto.getArticleTitle());
-            postInfo.addProperty("updateDt", postDto.getUpdateDate().toString());
-            postInfo.addProperty("tag", postDto.getTag().toString());
+            postInfo.addProperty("updateDt", Optional.ofNullable(postDto.getUpdateDate()).map(Objects::toString).orElse(""));
+            postInfo.addProperty("tag", Optional.ofNullable(postDto.getTag()).map(Objects::toString).orElse(""));
             postList.add(postInfo);
         }
         result.add("postList", postList);
