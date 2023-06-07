@@ -1,6 +1,5 @@
 package com.example.cnualarm.Dto;
 
-import com.example.cnualarm.Entity.Tag;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
@@ -23,6 +22,6 @@ public class PostDto {
     private String writerName;
     private int clickCnt;
     private Date updateDate;
-    private Tag tag;
+    private String tag;
     private List<AttachmentDto> attachmentDtoList;
 }

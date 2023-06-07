@@ -59,7 +59,7 @@ public class PostService {
             postInfo.addProperty("categoryName", postDto.getCategoryDto().getCategoryName());
             postInfo.addProperty("articleTitle", postDto.getArticleTitle());
             postInfo.addProperty("updateDt", Optional.ofNullable(postDto.getUpdateDate()).map(Objects::toString).orElse(""));
-            postInfo.addProperty("tag", Optional.ofNullable(postDto.getTag()).map(Objects::toString).orElse(""));
+            postInfo.addProperty("tag", postDto.getTag());
             postList.add(postInfo);
         }
         result.add("postList", postList);

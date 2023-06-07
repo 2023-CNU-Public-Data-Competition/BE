@@ -13,7 +13,7 @@ public class EntityConverter {
     public PostDto postToDto(PostEntity entity){
         return PostDto.builder()
                 .categoryDto(categoryToDto(entity.getCategoryEntity()))
-                .tag(entity.getTag())
+                .tag(entity.getTag().getKorean())
                 .articleTitle(entity.getArticleTitle())
                 .writerName(entity.getWriterName())
                 .updateDate(entity.getUpdateDate())
