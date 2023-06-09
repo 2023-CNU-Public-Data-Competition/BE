@@ -1,8 +1,10 @@
 package com.example.cnualarm.Utils;
 
+import com.example.cnualarm.Dto.AlarmsDTO;
 import com.example.cnualarm.Dto.AttachmentDto;
 import com.example.cnualarm.Dto.CategoryDto;
 import com.example.cnualarm.Dto.PostDto;
+import com.example.cnualarm.Entity.AlarmEntity;
 import com.example.cnualarm.Entity.AttachmentEntity;
 import com.example.cnualarm.Entity.CategoryEntity;
 import com.example.cnualarm.Entity.PostEntity;
@@ -48,5 +50,14 @@ public class EntityConverter {
         entity.setCategoryType(dto.getCategoryType());
         entity.setCategoryName(dto.getCategoryName());
         return entity;
+    }
+
+    public static AlarmsDTO alarmsToDTO(AlarmEntity alarmEntity) {
+        return AlarmsDTO.builder()
+                .alarmType(alarmEntity.getAlarmType())
+                .alarmName(alarmEntity.getAlarmName())
+                .articleNo(alarmEntity.getArticleNo())
+                .articleTitle(alarmEntity.getArticleTitle())
+                .updateDate(alarmEntity.getUpdateDate()).build();
     }
 }
