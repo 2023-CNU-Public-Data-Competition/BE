@@ -15,7 +15,7 @@ public class AuthController {
         return service.signup(input);
     }
 
-    @GetMapping("/auth/login")
+    @PostMapping("/auth/login")
     public JsonObject login(@RequestBody UserInput input){
         return service.login(input);
     }
