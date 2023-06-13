@@ -1,4 +1,4 @@
-package com.example.cnualarm.category;
+package com.example.cnualarm.Category;
 
 import com.example.cnualarm.Dto.CategoryDto;
 import com.example.cnualarm.Entity.LikedCategoryEntity;
@@ -39,7 +39,7 @@ public class CategoryService {
             JsonObject categorysByType = new JsonObject();
             categorysByType.addProperty("categoryType", categoryType);
             JsonArray content = new JsonArray();
-            for (CategoryDto categoryDto : categoryRepository.findByCategoryType(categoryType).stream().map(EntityConverter::categoryToDto).toList()) {
+            for (CategoryDto categoryDto : categoryRepository.findByCategoryTypeOrderByCategoryName(categoryType).stream().map(EntityConverter::categoryToDto).toList()) {
                 JsonObject category = new JsonObject();
                 category.addProperty("categoryNo", categoryDto.getCategoryNo());
                 category.addProperty("categoryName", categoryDto.getCategoryName());

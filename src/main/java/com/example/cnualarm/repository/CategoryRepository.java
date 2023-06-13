@@ -9,9 +9,9 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Integer> {
-    List<CategoryEntity> findByCategoryType(String categoryType);
+    List<CategoryEntity> findByCategoryTypeOrderByCategoryName(String categoryType);
 
-    @Query(value = "select category_type from category group by category_type", nativeQuery = true)
+    @Query(value = "select category_type from category group by category_type order by category_type", nativeQuery = true)
     List<String> getCategoryTypes();
 
 }
