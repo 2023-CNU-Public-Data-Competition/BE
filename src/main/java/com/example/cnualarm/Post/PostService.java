@@ -27,26 +27,26 @@ public class PostService {
     @Autowired
     EntityConverter converter;
 
-    public JsonObject getPostList(String token, int categoryNum, Tag tag) {
+    public JsonObject getPostList(String token, int categoryNum, String tag) throws Exception {
         List<PostDto> postDtos;
         if (categoryNum == 0) {
             List<Integer> likedNoList = likedCategoryRepository.findAllByUser_UserId(jwt.verify(token).getUsername())
                     .stream().map(likedCategoryEntity -> likedCategoryEntity.getCategory().getCategoryNo()).toList();
-            if (tag.equals(Tag.ALL)) {
+            if (tag.equals(Tag.ALL.getKorean())) {
                 postDtos = postRepository.findByCategoryNoIn(likedNoList)
                         .stream().map(converter::postToDto).toList();
             } else {
-                postDtos = postRepository.findByCategoryNoInAndTag(likedNoList, tag)
+                postDtos = postRepository.findByCategoryNoInAndTag(likedNoList, Tag.get(tag))
                         .stream().map(converter::postToDto).toList();
             }
         }
         else {
-            if (tag.equals(Tag.ALL)) {
+            if (tag.equals(Tag.ALL.getKorean())) {
                 postDtos = postRepository.findByCategoryNo(categoryNum)
                         .stream().map(converter::postToDto).toList();
             }
             else {
-                postDtos = postRepository.findByCategoryNoAndTag(categoryNum, tag)
+                postDtos = postRepository.findByCategoryNoAndTag(categoryNum, Tag.get(tag))
                         .stream().map(converter::postToDto).toList();
             }
         }
