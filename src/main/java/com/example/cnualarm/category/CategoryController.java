@@ -24,13 +24,16 @@ public class CategoryController {
 //    }
 //
     @PutMapping("/liked_category")
-    public JsonObject updateLikedCategory(@RequestHeader("token") String token, @RequestBody List<CategoryDto> categoryDtos) throws Exception {
-        service.updateLikedCategory(token, categoryDtos);
-        return service.getLikedCategory(token);
+    public JsonObject updateLikedCategory(@RequestHeader("Authorization") String Authorization, @RequestBody List<CategoryDto> categoryDtos) throws Exception {
+        for(CategoryDto i : categoryDtos) {
+            System.out.println(i.getCategoryName());
+        }
+        service.updateLikedCategory(Authorization, categoryDtos);
+        return service.getLikedCategory(Authorization);
     }
 
     @GetMapping("/liked_category")
-    public JsonObject getLikedCategory(@RequestHeader("token") String token){
-        return service.getLikedCategory(token);
+    public JsonObject getLikedCategory(@RequestHeader("Authorization") String Authorization){
+        return service.getLikedCategory(Authorization);
     }
 }
