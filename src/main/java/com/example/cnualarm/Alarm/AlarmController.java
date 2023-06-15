@@ -48,6 +48,8 @@ public class AlarmController {
         return alarmService.getAlarmsSettings(user_id, alarm_type);
     }
 
+
+
 //    @PutMapping("/alarm_setting")
 //    public ResponseEntity<String> updateAlarmSetting(@RequestBody AlarmSetingDTO alarmSetingDTO) {
 //        String a = alarmService.updateAlarmSetting(alarmSetingDTO);
