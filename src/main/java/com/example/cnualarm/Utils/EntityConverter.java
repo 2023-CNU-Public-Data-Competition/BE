@@ -1,13 +1,7 @@
 package com.example.cnualarm.Utils;
 
-import com.example.cnualarm.Dto.AlarmsDTO;
-import com.example.cnualarm.Dto.AttachmentDto;
-import com.example.cnualarm.Dto.CategoryDto;
-import com.example.cnualarm.Dto.PostDto;
-import com.example.cnualarm.Entity.AlarmEntity;
-import com.example.cnualarm.Entity.AttachmentEntity;
-import com.example.cnualarm.Entity.CategoryEntity;
-import com.example.cnualarm.Entity.PostEntity;
+import com.example.cnualarm.Dto.*;
+import com.example.cnualarm.Entity.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -41,6 +35,19 @@ public class EntityConverter {
                 .categoryNo(entity.getCategoryNo())
                 .categoryType(entity.getCategoryType())
                 .categoryName(entity.getCategoryName())
+                .build();
+    }
+
+    public static ScrapDto scrapToDto(ScrapEntity entity) {
+        return ScrapDto.builder()
+                .scrapNo(entity.getScrapNo())
+                .categoryNo(entity.getPost().getCategoryNo())
+                .categoryName(entity.getPost().getCategoryEntity().getCategoryName())
+                .articleNo(entity.getPost().getArticleNo())
+                .articleTitle(entity.getPost().getArticleTitle())
+                .writerName(entity.getPost().getWriterName())
+                .tag(entity.getPost().getTag().getKorean())
+                .updateDate(entity.getPost().getUpdateDate())
                 .build();
     }
 

@@ -3,6 +3,8 @@ package com.example.cnualarm.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Arrays;
+
 @Getter
 @AllArgsConstructor
 public enum Tag {
@@ -16,4 +18,10 @@ public enum Tag {
     NOTICE("기타 공지");
 
     private final String korean;
+
+    public static Tag get(String korean) throws Exception {
+        return Arrays.stream(Tag.values())
+                .filter(tag -> tag.getKorean().equals(korean))
+                .findFirst().orElseThrow(() -> new Exception("tag not defined."));
+    }
 }

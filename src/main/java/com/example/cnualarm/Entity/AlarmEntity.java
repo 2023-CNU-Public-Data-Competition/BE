@@ -38,4 +38,7 @@ public class AlarmEntity {
 
     @Column(name = "update_dt", columnDefinition = "DATE")
     private Date updateDate;
+
+    @Column(name = "is_alarm", columnDefinition = "VARCHAR(10)")
+    private String isAlarm;
 }

@@ -51,4 +51,8 @@ public class PostEntity {
 
     @OneToMany(mappedBy = "postEntity")
     private List<AttachmentEntity> attachmentEntityList;
+
+    public PostEntity(int articleNo) {
+        this.articleNo = articleNo;
+    }
 }

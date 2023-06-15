@@ -1,4 +1,4 @@
-package com.example.cnualarm.category;
+package com.example.cnualarm.Category;
 
 import com.example.cnualarm.Dto.CategoryDto;
 import com.google.gson.JsonObject;
@@ -18,11 +18,6 @@ public class CategoryController {
         return service.getCategorys();
     }
 
-//    @GetMapping("/liked_category")
-//    public JsonObject getLikedCategory(@RequestHeader("token") String token){
-//        return service.getLikedCategory(token);
-//    }
-//
     @PutMapping("/liked_category")
     public JsonObject updateLikedCategory(@RequestHeader("Authorization") String token, @RequestBody List<CategoryDto> categoryDtos) throws Exception {
         for(CategoryDto i : categoryDtos) {
