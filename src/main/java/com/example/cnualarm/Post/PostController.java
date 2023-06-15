@@ -16,7 +16,7 @@ public class PostController {
     PostService service;
 
     @GetMapping("posts")
-    public JsonObject getPostList(@RequestHeader("token") String token, @RequestParam("categoryNo") int categoryNum, @RequestParam("tag") Tag tag){
+    public JsonObject getPostList(@RequestHeader("Authorization") String token, @RequestParam("categoryNo") int categoryNum, @RequestParam("tag") Tag tag){
         return service.getPostList(token,categoryNum, tag);
     }
 
