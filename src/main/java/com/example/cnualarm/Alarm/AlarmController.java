@@ -28,22 +28,21 @@ public class AlarmController {
     }
 
     @GetMapping("/new-alarms")
-    public List<AlarmsDTO> getNewAlarms(@RequestHeader("token") String token) {
+    public List<AlarmsDTO> getNewAlarms(@RequestHeader("Authorization") String token) {
         Jwt.Claims claims =  jwt.verify(token);
         String user_id = claims.getUsername();
         return alarmService.getNewAlarms(user_id);
     }
 
     @GetMapping("/alarms")
-    public List<AlarmsDTO> getAlarms(@RequestHeader("token") String token) {
+    public List<AlarmsDTO> getAlarms(@RequestHeader("Authorization") String token) {
         Jwt.Claims claims =  jwt.verify(token);
         String user_id = claims.getUsername();
         return alarmService.getAlarms(user_id);
     }
 
-    //TODO : RequestHeader로 token 받아서 고치기
     @GetMapping("/alarm_setting")
-    public List getAlarmSettings(@RequestHeader("token") String token, @RequestParam String alarm_type) {
+    public List getAlarmSettings(@RequestHeader("Authorization") String token, @RequestParam String alarm_type) {
         Jwt.Claims claims =  jwt.verify(token);
         String user_id = claims.getUsername();
         return alarmService.getAlarmsSettings(user_id, alarm_type);
